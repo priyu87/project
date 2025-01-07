@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toy Shop</title>
+    <style>
+        /* General styling */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #99ff54;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #99fb53;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+        .grid-sections {
+            display: flex;
+            gap: 10px;
+        }
+        .grid-sections div {
+            padding: 5px 10px;
+            background-color: #ee72bc;
+            color: white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        h1 {
+            background-color: #ee72bc;
+            color: white;
+            margin: 0;
+            padding: 20px 0;
+        }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: rgb(243, 151, 217);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .carousel-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .image-row img {
+            width: calc(25% - 20px); /* 4 images in one row with gaps */
+            border-radius: 10px;
+            border: 2px solid #ef14cb;
+        }
+        .image-row.large img {
+            width: calc(50% - 20px); /* 2 images in one row with gaps */
+        }
+        .contact-form {
+            max-width: 100%;
+            margin: 1px auto;
+            text-align: center;
+            background-color: #e709a8;
+            padding: 1px;
+            border-radius: 1px;
+            color: white;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <div class="grid-sections">
+            <div>Home</div>
+            <div>Category</div>
+            <div>About</div>
+        </div>
+    </header>
+
+    <h1>Toy Shop!!..</h1>
+
+    <!-- Carousel Section -->
+    <div class="carousel">
+        <div class="slides" id="carouselSlides">
+            <img src="bg.jpeg" alt="Slide 1">
+            <img src="long1.jpeg" alt="Slide 2">
+            <img src="long2.jpeg" alt="Slide 3">
+        </div>
+        <div class="carousel-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+    <hr>
+    <!-- Image Grid Section -->
+    <div class="image-row">
+        <img src="teddy.jpeg" alt="Image 1">
+        <img src="car.jpeg" alt="Image 2">
+        <img src="jerry.jpeg" alt="Image 3">
+        <img src="phone.jpeg" alt="Image 4">
+    </div>
+
+    <div class="image-row large">
+        <img src="long1.jpeg" alt="Image 5">
+        <img src="long2.jpeg" alt="Image 6">
+    </div>
+    <hr>
+   
+    <!-- Contact Form Section -->
+    <div class="contact-form">
+        <h2>Contact Us</h2>
+        <h4>adhi@gmail.com</h4>
+        <h4>9886765435</h4>
+        <h4>cbe</h4>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const slides = document.getElementById("carouselSlides");
+            const totalSlides = slides.children.length;
+            currentSlide = (index + totalSlides) % totalSlides; // Ensure the index wraps around
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }       
+
+        // Automatic Slide every 5 seconds
+        setInterval(() => {
+            nextSlide();
+        }, 3000); // 5000 ms = 5 seconds
+    </script>
+</body>
+</html>
